@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+SC');
+
+$boxShadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+$white: #fff;
+
+.container {
+  background: #4e6580;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  font-family: 'Open Sans';
+}
+
+.button {
+  padding: 8px 55px;
+  background-color: #15ab88;
+  color: $white;
+  margin: 30px 15px;
+  border-radius: 3px;
+  transition: .3s;
+  cursor: pointer;
+  box-shadow: $boxShadow;
+
+  &:hover {
+    background-color: #0ed3a5;
+  }
+}
+
+.game {
+  color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  width: 720px;
+}
+
+.hide {
+  display: none;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 30px;
+}
+
+.buttonwrap {
+  display: flex;
+  align-self: center;
+}
+
+.infowrap {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  animation: fadeIn .5s;
+}
+
+.header {
+  font-size: 50px;
+  color: $white;
+  font-family: "Cormorant SC";
+}
+
+.placeholder {
+  font-style: italic;
+}
+
+.card {
+  width: 142px;
+  height: 200px;
+  font-size: 30px;
+  margin: 0 10px 10px 0;
+  perspective: 1000px;
+	margin: 1%;
+	cursor: pointer;
+  text-align: center;
+  @for $i from 1 through 16 {
+    &:nth-child(#{$i}) {
+      animation: slideIn #{.3 + ($i * .07)}s;
+    }
+  }
+}
+
+.flip {
+  transform: rotateY(180deg)
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.card, .front, .back {
+	border-radius: 12px;
+}
+
+.flipwrap{
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	height: 100%;
+	position: relative;
+}
+
+.front, .back {
+  backface-visibility: hidden;
+  -ms-backface-visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  box-shadow: $boxShadow;
+}
+
+.front {
+  transform: rotateY(0deg);
+  background: #111;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background: $white;
+  color: #333;
+  border: 1px solid #E8E8E8;
+  font-size: 120px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 30px;
+}
+
+.victory, .failure {
+  height: 50px;
+  width: 300px;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  margin: 15px 0 0 0;
+  color: #000;
+  align-self: center;
+}
+
+.failure {
+  border: 1px solid #ef8989;
+  background: #f9ecec;
+}
+.victory {
+  border: 1px solid #9ac986;
+  background: #d2f1c5;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translate3d(0, 300px, 0);
+    opacity: 0;
+  }
+  50% { opacity: 1}
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0 }
+}
